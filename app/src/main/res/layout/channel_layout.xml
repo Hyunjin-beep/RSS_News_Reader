@@ -9,12 +9,4 @@
         android:id="@+id/tv_channel_title"
         android:layout_width="0dp"
         android:layout_height="match_parent"/>
-
-    <TextView
-        android:gravity="center"
-        android:layout_weight="1"
-        android:id="@+id/tv_channel_year"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"/>
-
 </LinearLayout>

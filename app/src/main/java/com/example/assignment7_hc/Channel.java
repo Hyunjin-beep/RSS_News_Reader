@@ -1,11 +1,12 @@
 package com.example.assignment7_hc;
 
-
 import java.util.ArrayList;
 
 public class Channel {
     private String title;
-    private int pubDate;
+    private String pubDate;
+
+
 
     public Channel(String title){
         this.title = title;
@@ -19,19 +20,12 @@ public class Channel {
         this.title = title;
     }
 
-    public int getYear(){
+    public String getYear(){
         return this.pubDate;
     }
 
-    public void setPubDate(int pubDate) {
+    public void setPubDate(String pubDate) {
         this.pubDate = pubDate;
     }
 
-    public static ArrayList<Channel> generateChannel(){
-        ArrayList<Channel> channelList = new ArrayList<>();
-
-        channelList.add(new Channel("new24") );
-
-        return channelList;
-    }
 }
