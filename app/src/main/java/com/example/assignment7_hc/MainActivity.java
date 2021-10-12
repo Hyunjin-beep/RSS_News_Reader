@@ -7,6 +7,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -40,12 +41,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar myToolbar =  findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        View lv_one = findViewById(R.id.rl_one);
+
 //        lvRSS = findViewById(R.id.lv_RSS_Feed);
 //        ChannelAdapter channelAdapter = new ChannelAdapter(this, R.layout.channel_layout, Channel.generateChannel());
 
 //        lvRSS.setAdapter(channelAdapter);
         Button btn = findViewById(R.id.btn_test);
-        btn.setOnClickListener(test);
+        lv_one.setOnClickListener(test);
 
 
     }

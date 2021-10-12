@@ -43,9 +43,11 @@ public class ChannelAdapter extends ArrayAdapter<Channel> {
         Channel current = getItem(position);
 
         TextView tvTitle = convertView.findViewById(R.id.tv_channel_title);
+//        TextView tvDesc = convertView.findViewById(R.id.tv_desc);
 
 
         tvTitle.setText(current.getTitle());
+//        tvDesc.setText(current.getDesp());
 //        Channel channel = getItem(position);
 //
 //        tvTitle.setText(channel.getTitle());

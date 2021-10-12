@@ -5,11 +5,13 @@ import java.util.ArrayList;
 public class Channel {
     private String title;
     private String pubDate;
+    private String desp;
 
 
 
     public Channel(String title){
         this.title = title;
+
     }
 
     public String getTitle(){
@@ -20,12 +22,8 @@ public class Channel {
         this.title = title;
     }
 
-    public String getYear(){
-        return this.pubDate;
-    }
-
-    public void setPubDate(String pubDate) {
-        this.pubDate = pubDate;
+    public String getDesp(){
+        return this.desp;
     }
 
 }

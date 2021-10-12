@@ -1,30 +1,27 @@
 package com.example.assignment7_hc;
 
-import android.util.Log;
-import android.widget.ArrayAdapter;
-
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
 
 public class RSSParseHandler extends DefaultHandler {
     Boolean inItem = false;
     Boolean inTitle = false;
-    StringBuilder sb;
+    Boolean inDesc = false;
+    StringBuilder sbForTitle;
+    StringBuilder sbForDesc;
     public static ArrayList<Channel> channels;
     static ArrayList<String> titleList;
+    static ArrayList<String> descList;
 
     @Override
     public void startDocument() throws SAXException {
         super.startDocument();
 //        Log.d("HC", "start document");
         titleList = new ArrayList<String>();
+        descList = new ArrayList<String>();
     }
 
     @Override
@@ -38,11 +35,13 @@ public class RSSParseHandler extends DefaultHandler {
         super.startElement(uri, localName, qName, attributes);
         if(qName.equals("item")){
             inItem = true;
-//            channel = new Channel();
         } else if(qName.equals("title") && inItem){
-            sb = new StringBuilder();
+            sbForTitle = new StringBuilder();
             inTitle = true;
 
+        } else if(qName.equals("description") && inItem){
+            sbForDesc = new StringBuilder();
+            inDesc = true;
         }
 
     }
@@ -53,9 +52,12 @@ public class RSSParseHandler extends DefaultHandler {
 
         if(qName.equalsIgnoreCase("title") && inTitle){
             inTitle = false;
-            titleList.add(sb.toString());
+            titleList.add(sbForTitle.toString());
         } else if(qName.equalsIgnoreCase("item")){
             inItem = false;
+        } else if(qName.equals("description") && inDesc){
+            inDesc = false;
+            descList.add(sbForDesc.toString());
         }
 
     }
@@ -65,7 +67,9 @@ public class RSSParseHandler extends DefaultHandler {
         super.characters(ch, start, length);
 
         if(inItem && inTitle){
-            sb.append(ch,start,length);
+            sbForTitle.append(ch,start,length);
+        } else if(inItem && inDesc){
+            sbForDesc.append(ch,start,length);
         }
     }
 

@@ -25,17 +25,168 @@
 
     <RelativeLayout
 
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
+        android:layout_height="675dp"
+        android:layout_alignParentStart="true"
         android:layout_marginTop="?attr/actionBarSize"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
         <Button
             android:id="@+id/btn_test"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Button">
+            android:layout_height="wrap_content"
+            android:text="weqw"
+            tools:ignore="DuplicateClickableBoundsCheck">
 
         </Button>
+
+        <RelativeLayout
+            android:id="@+id/rl_one"
+            android:layout_width="wrap_content"
+            android:layout_height="144dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="72dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_title_main_one"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+
+                android:layout_marginTop="11dp"
+                android:layout_marginEnd="127dp"
+                android:layout_weight="1"
+                android:text="Fin24 Tech"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_descp_main_one"
+                android:layout_width="240dp"
+                android:layout_height="100dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+
+                android:layout_marginTop="37dp"
+                android:layout_marginEnd="21dp"
+                android:layout_weight="1"
+                android:text="South Africa's premier site for breaking business and finance news, stock market data, economic analysis, personal finance and investment information." />
+
+            <ImageView
+                android:id="@+id/iv_img_main_one"
+                android:layout_width="98dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="37dp"
+
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
+                tools:srcCompat="@tools:sample/avatars" />
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:id="@+id/rl_two"
+            android:layout_width="wrap_content"
+            android:layout_height="144dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="1dp"
+            android:layout_marginTop="278dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_title_main_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+
+                android:layout_marginTop="14dp"
+                android:layout_marginEnd="49dp"
+                android:layout_weight="1"
+                android:text="Winnipeg Free Press: The Arts"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_descp_main_two"
+                android:layout_width="216dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+
+                android:layout_marginTop="41dp"
+                android:layout_marginEnd="46dp"
+                android:layout_weight="1"
+                android:text="Arts and Life articles and news from Manitoba - Winnipeg Free Press." />
+
+            <ImageView
+                android:id="@+id/iv_img_main_two"
+                android:layout_width="98dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="37dp"
+
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
+                tools:srcCompat="@tools:sample/avatars" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_third"
+            android:layout_width="wrap_content"
+            android:layout_height="144dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="-5dp"
+            android:layout_marginTop="475dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_title_main_third"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+
+                android:layout_marginTop="13dp"
+                android:layout_marginEnd="56dp"
+                android:layout_weight="1"
+                android:text="Winnipeg Free Press: Movies"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_descp_main_third"
+                android:layout_width="216dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+
+                android:layout_marginTop="41dp"
+                android:layout_marginEnd="46dp"
+                android:layout_weight="1"
+                android:text="Movies articles and news from Manitoba - Winnipeg Free Press." />
+
+            <ImageView
+                android:id="@+id/iv_img_main_third"
+                android:layout_width="98dp"
+                android:layout_height="70dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="48dp"
+
+                android:layout_marginTop="19dp"
+                android:layout_weight="1"
+                tools:srcCompat="@tools:sample/avatars" />
+        </RelativeLayout>
+
+
     </RelativeLayout>
 
 
