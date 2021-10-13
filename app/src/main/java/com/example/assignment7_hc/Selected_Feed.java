@@ -2,6 +2,7 @@ package com.example.assignment7_hc;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -19,6 +20,8 @@ public class Selected_Feed extends AppCompatActivity {
         ChannelAdapter channelAdapter = new ChannelAdapter(this, R.layout.channel_layout, RSSParseHandler.generateChannel());
 
         lvRSS.setAdapter(channelAdapter);
+
+        Intent intent = getIntent();
 
     }
 }

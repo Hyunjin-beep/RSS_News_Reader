@@ -18,6 +18,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -28,11 +29,6 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class MainActivity extends AppCompatActivity {
 
-    ListView lvRSS;
-    ArrayList<Channel> channelItems;
-    private ArrayList<Channel> channels;
-    ArrayList<String> titleList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,14 +38,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         View lv_one = findViewById(R.id.rl_one);
-
-//        lvRSS = findViewById(R.id.lv_RSS_Feed);
-//        ChannelAdapter channelAdapter = new ChannelAdapter(this, R.layout.channel_layout, Channel.generateChannel());
-
-//        lvRSS.setAdapter(channelAdapter);
-        Button btn = findViewById(R.id.btn_test);
         lv_one.setOnClickListener(test);
 
+        // https://www.winnipegfreepress.com/rss/?path=%2Farts-and-life%2Fentertainment%2Farts
+        // https://www.winnipegfreepress.com/rss/?path=%2Farts-and-life%2Fentertainment%2Fmovies
 
     }
 
@@ -64,12 +56,13 @@ public class MainActivity extends AppCompatActivity {
     private View.OnClickListener test = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
             new DownloadAndParseRSS().execute();
         }
     };
 
 
-    public class DownloadAndParseRSS extends AsyncTask<Void, Void, Void>{
+    public class DownloadAndParseRSS extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -83,13 +76,13 @@ public class MainActivity extends AppCompatActivity {
                 connection = (HttpsURLConnection) rssURL.openConnection();
                 inputStream = connection.getInputStream();
 
-            }catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
             SAXParserFactory spf = SAXParserFactory.newInstance();
 
-            try{
+            try {
                 SAXParser saxParser = spf.newSAXParser();
                 RSSParseHandler rssParseHandler = new RSSParseHandler();
                 saxParser.parse(inputStream, rssParseHandler);
@@ -101,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             return null;
         }
     }
+
 
 
 }

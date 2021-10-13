@@ -9,8 +9,10 @@ public class Channel {
 
 
 
-    public Channel(String title){
+    public Channel(String title, String desp, String pubDate){
         this.title = title;
+        this.desp = desp;
+        this.pubDate = pubDate;
 
     }
 
@@ -24,6 +26,10 @@ public class Channel {
 
     public String getDesp(){
         return this.desp;
+    }
+
+    public String getPubDate(){
+        return this.pubDate;
     }
 
 }
