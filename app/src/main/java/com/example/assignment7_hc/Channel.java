@@ -28,8 +28,16 @@ public class Channel {
         return this.desp;
     }
 
+    public void setDesp(String desp){
+        this.desp = desp;
+    }
+
     public String getPubDate(){
         return this.pubDate;
+    }
+
+    public void setPubDate(String pubDate){
+        this.pubDate = pubDate;
     }
 
 }

@@ -17,7 +17,7 @@ public class Selected_Feed extends AppCompatActivity {
 
         lvRSS = findViewById(R.id.lv_RSS_Feed);
 
-        ChannelAdapter channelAdapter = new ChannelAdapter(this, R.layout.channel_layout, RSSParseHandler.generateChannel());
+        ChannelAdapter channelAdapter = new ChannelAdapter(this, R.layout.channel_layout, RSSParseHandler.list);
 
         lvRSS.setAdapter(channelAdapter);
 

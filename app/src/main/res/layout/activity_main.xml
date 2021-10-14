@@ -86,7 +86,7 @@
 
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:srcCompat="@drawable/fin24"/>
         </RelativeLayout>
 
 
@@ -101,29 +101,29 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_title_main_two"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-
-                android:layout_marginTop="14dp"
-                android:layout_marginEnd="49dp"
-                android:layout_weight="1"
-                android:text="Winnipeg Free Press: The Arts"
-                android:textSize="16sp" />
-
-            <TextView
                 android:id="@+id/tv_descp_main_two"
                 android:layout_width="216dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
 
-                android:layout_marginTop="41dp"
+                android:layout_marginTop="56dp"
                 android:layout_marginEnd="46dp"
                 android:layout_weight="1"
-                android:text="Arts and Life articles and news from Manitoba - Winnipeg Free Press." />
+                android:text="The latest news from across Canada and around the world." />
+
+            <TextView
+                android:id="@+id/tv_title_main_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+
+                android:layout_marginTop="29dp"
+                android:layout_marginEnd="186dp"
+                android:layout_weight="1"
+                android:text="CBC News"
+                android:textSize="16sp" />
 
             <ImageView
                 android:id="@+id/iv_img_main_two"
@@ -135,7 +135,7 @@
 
                 android:layout_marginTop="30dp"
                 android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:srcCompat="@drawable/cbc"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -155,10 +155,10 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
 
-                android:layout_marginTop="13dp"
-                android:layout_marginEnd="56dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="133dp"
                 android:layout_weight="1"
-                android:text="Winnipeg Free Press: Movies"
+                android:text="Top 10 ABC News"
                 android:textSize="16sp" />
 
             <TextView
@@ -171,7 +171,7 @@
                 android:layout_marginTop="41dp"
                 android:layout_marginEnd="46dp"
                 android:layout_weight="1"
-                android:text="Movies articles and news from Manitoba - Winnipeg Free Press." />
+                android:text="Your trusted source for breaking news, analysis, exclusive interviews, headlines, and videos at ABCNews.com" />
 
             <ImageView
                 android:id="@+id/iv_img_main_third"
@@ -179,11 +179,11 @@
                 android:layout_height="70dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="48dp"
+                android:layout_marginStart="38dp"
 
                 android:layout_marginTop="19dp"
                 android:layout_weight="1"
-                tools:srcCompat="@tools:sample/avatars" />
+                app:srcCompat="@drawable/abc" />
         </RelativeLayout>
 
 
