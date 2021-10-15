@@ -183,7 +183,7 @@
 
                 android:layout_marginTop="19dp"
                 android:layout_weight="1"
-                app:srcCompat="@drawable/abc" />
+                app:srcCompat="@drawable/abcnews_pearl_stacked" />
         </RelativeLayout>
 
 

@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -40,7 +41,7 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
         lv_one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DownloadAndParseRSS("https://feeds.24.com/articles/fin24/tech/rss").execute();
+                new DownloadAndParseRSS("https://feeds.24.com/articles/fin24/tech/rss", "fin").execute();
             }
         });
 
@@ -48,7 +49,7 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
         lv_two.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DownloadAndParseRSS("https://www.cbc.ca/cmlink/rss-topstories").execute();
+                new DownloadAndParseRSS("https://www.cbc.ca/cmlink/rss-topstories", "cbc").execute();
             }
         });
 
@@ -56,9 +57,11 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
         lv_third.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new DownloadAndParseRSS(" https://abcnews.go.com/abcnews/topstories").execute();
+                new DownloadAndParseRSS(" https://abcnews.go.com/abcnews/topstories", "abc").execute();
             }
         });
+
+
 
     }
 
@@ -78,9 +81,11 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
 
         ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
         public String urlst;
+        public String channelName;
 
-        public DownloadAndParseRSS(String url) {
+        public DownloadAndParseRSS(String url, String channelName) {
             this.urlst = url;
+            this.channelName = channelName;
         }
 
         @Override
@@ -95,6 +100,10 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
         protected void onPostExecute(Void unused) {
             super.onPostExecute(unused);
             Intent intent = new Intent(MainActivity.this, Selected_Feed.class);
+            Bundle extras = new Bundle();
+            extras.putString("channelName", channelName);
+            Log.d("mv", channelName);
+            intent.putExtras(extras);
             startActivity(intent);
             progressDialog.dismiss();
         }

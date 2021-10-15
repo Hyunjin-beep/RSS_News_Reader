@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailsPage">
+
+    <TextView
+        android:id="@+id/tvTitleDP"
+        android:layout_width="346dp"
+        android:layout_height="122dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="31dp"
+        android:layout_marginTop="49dp"
+        android:text="TextView"
+        android:gravity="center"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/ivImageDP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="151dp"
+        android:layout_marginTop="197dp"
+        android:maxWidth="100dp"
+        android:maxHeight="100dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tvDespDP"
+        android:layout_width="273dp"
+        android:layout_height="98dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="406dp"
+        android:gravity="center"
+        android:text="abcdefgsfhesfckjdugfhkjdsfhdkjfhkujfffffffffffffffffffffffffffhshguewghiwuega;ojgvpaoekf[pakvm;dkabnj;ae" />
+
+    <TextView
+        android:id="@+id/tvPubDateDP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="354dp"
+        android:gravity="center"
+        android:text="TextView" />
+</RelativeLayout>

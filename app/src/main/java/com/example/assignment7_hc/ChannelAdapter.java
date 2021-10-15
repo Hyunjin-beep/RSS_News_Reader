@@ -27,7 +27,6 @@ public class ChannelAdapter extends ArrayAdapter<Channel> {
         this.context = context;
         this.channel_items_id = channel_items_id;
 
-
     }
 
 
@@ -44,17 +43,10 @@ public class ChannelAdapter extends ArrayAdapter<Channel> {
 
         TextView tvTitle = convertView.findViewById(R.id.tv_channel_title);
         TextView tvWeekend = convertView.findViewById(R.id.tv_weekend);
-//        TextView tvDesc = convertView.findViewById(R.id.tv_desc);
 
 
         tvTitle.setText(current.getTitle());
         tvWeekend.setText(current.getPubDate());
-//        tvDesc.setText(current.getDesp());
-//        Channel channel = getItem(position);
-//
-//        tvTitle.setText(channel.getTitle());
-//        tvYear.setText(Integer.toString(channel.getYear()));
-
 
 
         return convertView;

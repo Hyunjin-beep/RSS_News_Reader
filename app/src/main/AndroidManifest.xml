@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".DetailsPage"
+            android:exported="true" />
+        <activity
             android:name=".Selected_Feed"
             android:exported="true" />
         <activity
