@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".DetailsPage">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_third"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+    </androidx.appcompat.widget.Toolbar>
+
     <TextView
         android:id="@+id/tvTitleDP"
         android:layout_width="346dp"

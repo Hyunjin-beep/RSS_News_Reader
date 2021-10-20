@@ -13,10 +13,12 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".DetailsPage"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".Selected_Feed"/>
         <activity
             android:name=".Selected_Feed"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

@@ -1,6 +1,7 @@
 package com.example.assignment7_hc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,14 @@ public class DetailsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_page);
+
+        Toolbar myToolbar =  findViewById(R.id.my_toolbar_third);
+        setSupportActionBar(myToolbar);
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         TextView tvTitle = findViewById(R.id.tvTitleDP);
         TextView tvDesp = findViewById(R.id.tvDespDP);

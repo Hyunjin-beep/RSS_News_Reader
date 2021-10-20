@@ -1,21 +1,26 @@
 package com.example.assignment7_hc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Selected_Feed extends AppCompatActivity {
 
     ListView lvRSS;
-
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -23,16 +28,39 @@ public class Selected_Feed extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_feed);
 
+        Toolbar myToolbar =  findViewById(R.id.my_toolbar_second);
+        setSupportActionBar(myToolbar);
+
+        if(getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
         lvRSS = findViewById(R.id.lv_RSS_Feed);
 
         ChannelAdapter channelAdapter = new ChannelAdapter(this, R.layout.channel_layout, RSSParseHandler.list);
 
         lvRSS.setAdapter(channelAdapter);
 
-
-
         lvRSS.setOnItemClickListener(feedClicked);
 
+        swipeRefreshLayout = findViewById(R.id.swipe_layout);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.d("second", "refresh" );
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // inflate the options menu
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_selected, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     AdapterView.OnItemClickListener feedClicked = new AdapterView.OnItemClickListener(){
@@ -61,8 +89,6 @@ public class Selected_Feed extends AppCompatActivity {
 
                 Log.d("img - sf in if", String.valueOf(imgData));
             }
-
-
 
             extras.putInt("img", imgData);
             Log.d("img from seleected", String.valueOf(imgData));

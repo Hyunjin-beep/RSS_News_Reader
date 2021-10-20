@@ -7,9 +7,30 @@
     android:orientation="vertical"
     tools:context=".Selected_Feed">
 
-    <ListView
-        android:id="@+id/lv_RSS_Feed"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/my_toolbar_second"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/swipe_layout">
+
+        <ListView
+            android:id="@+id/lv_RSS_Feed"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>
