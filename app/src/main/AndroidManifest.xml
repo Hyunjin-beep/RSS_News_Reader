@@ -12,13 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
+            android:name=".SettingDetails"
+            android:exported="true" />
+        <activity
             android:name=".DetailsPage"
             android:exported="true"
-            android:parentActivityName=".Selected_Feed"/>
+            android:parentActivityName=".Selected_Feed" />
         <activity
             android:name=".Selected_Feed"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
             android:exported="true">

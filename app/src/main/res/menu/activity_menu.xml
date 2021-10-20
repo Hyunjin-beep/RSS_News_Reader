@@ -2,13 +2,7 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-        <item android:id="@+id/menu_fav_place_one"
-            android:title="La Sagrada Familia"
-            app:showAsAction="never"/>
-        <item android:id="@+id/menu_fav_place_two"
-            android:title="N Seoul Tower"
-            app:showAsAction="never"/>
-        <item android:id="@+id/menu_fav_place_three"
-            android:title="Empire State Building"
+        <item android:id="@+id/menu_setting"
+            android:title="Setting"
             app:showAsAction="never"/>
 </menu>
