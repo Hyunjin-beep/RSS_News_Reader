@@ -37,9 +37,14 @@ import javax.xml.parsers.SAXParserFactory;
 
 public class MainActivity<setOnClickListener> extends AppCompatActivity {
 
-    SharedPreferences sharedPreferences;
+    SharedPreferences preferences;
     boolean shouldExecuteOnResume;
-
+    public static final String pref_fin = "pref_fin";
+    public static final String pref_cbc = "pref_cbc";
+    public static final String pref_abc = "pref_abc";
+    public static final String cb_fin_state = "checkboxstat_fin";
+    public static final String cb_cbc_key = "checkboxstat_cbc";
+    public static final String cb_abc_key = "checkboxstat_abc";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,41 +85,23 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        View lv_one = findViewById(R.id.rl_one);
 
-//        if (!shouldExecuteOnResume) {
-//            shouldExecuteOnResume = true;
-//            Toast.makeText(MainActivity.this, "resume" + Boolean.toString(shouldExecuteOnResume), Toast.LENGTH_SHORT).show();
-//        }
-//        else{
-            sharedPreferences = getSharedPreferences("pref", MODE_PRIVATE);
-            boolean checkState = sharedPreferences.getBoolean("checkboxstate", true);
+        adaptingPref(getSharedPreferences(MainActivity.pref_fin, MODE_PRIVATE), MainActivity.cb_fin_state, R.id.rl_one);
+        adaptingPref(getSharedPreferences(MainActivity.pref_cbc, MODE_PRIVATE), MainActivity.cb_cbc_key, R.id.rl_two);
+        adaptingPref(getSharedPreferences(MainActivity.pref_abc, MODE_PRIVATE), MainActivity.cb_abc_key, R.id.rl_third);
+    }
 
-            Toast.makeText(MainActivity.this, Boolean.toString(checkState), Toast.LENGTH_SHORT).show();
 
-            if(checkState){
-                lv_one.setVisibility(View.VISIBLE);
-            } else{
-                lv_one.setVisibility(View.GONE);
-            }
-//        }
+    public void adaptingPref(SharedPreferences preferences, String key, int lv_id){
+        boolean checkState = preferences.getBoolean(key, true);
+        View lv_num = findViewById(lv_id);
+        Toast.makeText(MainActivity.this, "main "+ checkState, Toast.LENGTH_SHORT).show();
+        if(checkState){
+            lv_num.setVisibility(View.VISIBLE);
+        } else{
+            lv_num.setVisibility(View.GONE);
+        }
 
-//        if(shouldExecuteOnResume){
-//            sharedPreferences = getSharedPreferences("pref", MODE_PRIVATE);
-//            boolean checkState = sharedPreferences.getBoolean("checkboxstate", true);
-//
-//            Toast.makeText(MainActivity.this, Boolean.toString(checkState), Toast.LENGTH_SHORT).show();
-//
-//            if(!checkState){
-//
-//                lv_one.setVisibility(View.GONE);
-//            } else{
-//                lv_one.setVisibility(View.VISIBLE);
-//            }
-//        } else{
-//            shouldExecuteOnResume = true;
-//            Toast.makeText(MainActivity.this, Boolean.toString(shouldExecuteOnResume), Toast.LENGTH_SHORT).show();
-//        }
     }
 
 

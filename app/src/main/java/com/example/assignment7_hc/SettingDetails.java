@@ -7,22 +7,22 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.EditText;
 import android.widget.Toast;
 
 public class SettingDetails extends AppCompatActivity {
 
     CheckBox cb_fin;
+    CheckBox cb_cbc;
+    CheckBox cb_abc;
     SharedPreferences preferences;
     boolean shouldExecuteOnResume;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,66 +40,96 @@ public class SettingDetails extends AppCompatActivity {
         Intent intent = getIntent();
 
         cb_fin = findViewById(R.id.cb_fin);
+        cb_cbc = findViewById(R.id.cb_cbc);
+        cb_abc = findViewById(R.id.cb_abc);
 
-        cb_fin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // TODO Auto-generated method stub
-                if(isChecked) {
-                    String settings = "fin";
+        cb_fin.setOnClickListener(new clickedCB(MainActivity.pref_fin, MainActivity.cb_fin_state, R.id.cb_fin ));
+        cb_cbc.setOnClickListener(new clickedCB(MainActivity.pref_cbc, MainActivity.cb_cbc_key, R.id.cb_cbc ));
+        cb_cbc.setOnClickListener(new clickedCB(MainActivity.pref_abc, MainActivity.cb_cbc_key, R.id.cb_abc ));
 
-                    preferences = getSharedPreferences("pref", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.clear();
-                    editor.putBoolean("checkboxstate", isChecked);
-                    editor.apply();
-
-                    Toast.makeText(SettingDetails.this, Boolean.toString(isChecked), Toast.LENGTH_SHORT).show();
-                } else{
-                    SharedPreferences preferences = getSharedPreferences("pref", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.clear();
-                    editor.putBoolean("checkboxstate", isChecked);
-                    editor.apply();
-
-                    Toast.makeText(SettingDetails.this, Boolean.toString(isChecked), Toast.LENGTH_SHORT).show();
-                }
+    }
 
 
+
+    public class clickedCB implements View.OnClickListener{
+
+        String pref;
+        String key;
+        int cb_id;
+
+        public clickedCB(String pref, String key, int cb_id){
+            this.pref = pref;
+            this.key = key;
+            this.cb_id = cb_id;
+        }
+
+        @Override
+        public void onClick(View v) {
+            CheckBox clickedCB = findViewById(cb_id);
+            preferences = getSharedPreferences(pref, MODE_PRIVATE);
+            if(clickedCB.isChecked()){
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.putBoolean(key, clickedCB.isChecked());
+                editor.apply();
+//                Toast.makeText(SettingDetails.this, Boolean.toString(clickedCB.isChecked()), Toast.LENGTH_SHORT).show();
+            } else{
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.putBoolean(key, clickedCB.isChecked());
+                editor.apply();
+//                Toast.makeText(SettingDetails.this, Boolean.toString(clickedCB.isChecked()), Toast.LENGTH_SHORT).show();
             }
-        });
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         Log.d("setting", "onpause");
-        cb_fin = findViewById(R.id.cb_fin);
-        boolean cb_fin_state = cb_fin.isChecked();
-        if(cb_fin_state){
-            preferences.edit().putBoolean("checkboxstate",true).apply();
-            Toast.makeText(SettingDetails.this, "pause"+Boolean.toString(cb_fin_state), Toast.LENGTH_SHORT).show();
-        } else{
-            preferences.edit().putBoolean("checkboxstate",false).apply();
-            Toast.makeText(SettingDetails.this, Boolean.toString(cb_fin_state), Toast.LENGTH_SHORT).show();
-        }
+//        cb_fin = findViewById(R.id.cb_fin);
+//        boolean cb_fin_state = cb_fin.isChecked();
+//        if(cb_fin_state){
+//            preferences.edit().putBoolean("checkboxstate_fin",true).apply();
+////            Toast.makeText(SettingDetails.this, "pause"+Boolean.toString(cb_fin_state), Toast.LENGTH_SHORT).show();
+//        } else{
+//            preferences.edit().putBoolean("checkboxstate_fin",false).apply();
+////            Toast.makeText(SettingDetails.this, Boolean.toString(cb_fin_state), Toast.LENGTH_SHORT).show();
+//        }
 
+        savingState(getSharedPreferences(MainActivity.pref_fin, MODE_PRIVATE), MainActivity.cb_fin_state, R.id.cb_fin);
+        savingState(getSharedPreferences(MainActivity.pref_cbc, MODE_PRIVATE), MainActivity.cb_cbc_key, R.id.cb_cbc);
+        savingState(getSharedPreferences(MainActivity.pref_abc, MODE_PRIVATE), MainActivity.cb_abc_key, R.id.cb_abc);
+
+    }
+
+    public void savingState(SharedPreferences preferences, String key, int cb_id){
+        CheckBox cb_num = findViewById(cb_id);
+        boolean cb_checked_state = cb_num.isChecked();
+        if(cb_num.isChecked()){
+            preferences.edit().putBoolean(key,true).apply();
+            Toast.makeText(SettingDetails.this, "setting - pause "+cb_num.isChecked(), Toast.LENGTH_SHORT).show();
+        } else{
+            preferences.edit().putBoolean(key,false).apply();
+            Toast.makeText(SettingDetails.this, "setting - pause "+cb_num.isChecked(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        cb_fin = findViewById(R.id.cb_fin);
-        String key = "checkboxstate";
-        preferences = getSharedPreferences("pref", MODE_PRIVATE);
-        boolean checkState = preferences.getBoolean("checkboxstate", true);
-        cb_fin.setChecked(checkState);
-        Toast.makeText(SettingDetails.this, "resume "+Boolean.toString(checkState), Toast.LENGTH_SHORT).show();
+        adaptingPref(getSharedPreferences(MainActivity.pref_fin, MODE_PRIVATE), MainActivity.cb_fin_state, R.id.cb_fin);
+        adaptingPref(getSharedPreferences(MainActivity.pref_cbc, MODE_PRIVATE), MainActivity.cb_cbc_key, R.id.cb_cbc);
+        adaptingPref(getSharedPreferences(MainActivity.pref_abc, MODE_PRIVATE), MainActivity.cb_abc_key, R.id.cb_abc);
+        Toast.makeText(SettingDetails.this, "resume ", Toast.LENGTH_SHORT).show();
 
 
+    }
 
-
-
+    public void adaptingPref(SharedPreferences preferences, String key, int cb_id){
+        boolean checkState = preferences.getBoolean(key, true);
+        CheckBox cb_num = findViewById(cb_id);
+        cb_num.setChecked(checkState);
     }
 
     @Override
