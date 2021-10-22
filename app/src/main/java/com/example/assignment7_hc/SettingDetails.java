@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.Preference;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,12 +21,14 @@ import android.widget.Toast;
 public class SettingDetails extends AppCompatActivity {
 
     CheckBox cb_fin;
-    SharedPreferences sharedPreferences;
+    SharedPreferences preferences;
+    boolean shouldExecuteOnResume;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_details);
 
+        shouldExecuteOnResume = false;
         Toolbar myToolbar =  findViewById(R.id.my_toolbar_setting);
         setSupportActionBar(myToolbar);
 
@@ -42,38 +45,62 @@ public class SettingDetails extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // TODO Auto-generated method stub
-                if(isChecked){
+                if(isChecked) {
                     String settings = "fin";
 
-                    SharedPreferences preferences = getSharedPreferences("pref", MODE_PRIVATE);
+                    preferences = getSharedPreferences("pref", MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putBoolean("checkboxstate", Boolean.parseBoolean(Boolean.toString(isChecked)));
+                    editor.clear();
+                    editor.putBoolean("checkboxstate", isChecked);
                     editor.apply();
 
+                    Toast.makeText(SettingDetails.this, Boolean.toString(isChecked), Toast.LENGTH_SHORT).show();
+                } else{
+                    SharedPreferences preferences = getSharedPreferences("pref", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.clear();
+                    editor.putBoolean("checkboxstate", isChecked);
+                    editor.apply();
 
                     Toast.makeText(SettingDetails.this, Boolean.toString(isChecked), Toast.LENGTH_SHORT).show();
-
                 }
+
+
             }
         });
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d("setting", "onpause");
+        cb_fin = findViewById(R.id.cb_fin);
+        boolean cb_fin_state = cb_fin.isChecked();
+        if(cb_fin_state){
+            preferences.edit().putBoolean("checkboxstate",true).apply();
+            Toast.makeText(SettingDetails.this, "pause"+Boolean.toString(cb_fin_state), Toast.LENGTH_SHORT).show();
+        } else{
+            preferences.edit().putBoolean("checkboxstate",false).apply();
+            Toast.makeText(SettingDetails.this, Boolean.toString(cb_fin_state), Toast.LENGTH_SHORT).show();
+        }
 
     }
-//    private View.OnClickListener saveData = new View.OnClickListener() {
-//        @Override
-//        public void onClick(View view) {
-//            String settings = et_settings.getText().toString();
-//
-//            SharedPreferences.Editor editor = sharedPreferences.edit();
-//            editor.putString("settings", settings);
-//            editor.apply();
-//
-//            Toast.makeText(SettingDetails.this, "saved", Toast.LENGTH_SHORT).show();
-//        }
-//    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        cb_fin = findViewById(R.id.cb_fin);
+        String key = "checkboxstate";
+        preferences = getSharedPreferences("pref", MODE_PRIVATE);
+        boolean checkState = preferences.getBoolean("checkboxstate", true);
+        cb_fin.setChecked(checkState);
+        Toast.makeText(SettingDetails.this, "resume "+Boolean.toString(checkState), Toast.LENGTH_SHORT).show();
 
 
 
 
+
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
