@@ -20,6 +20,11 @@ public class SettingDetails extends AppCompatActivity {
     CheckBox cb_fin;
     CheckBox cb_cbc;
     CheckBox cb_abc;
+
+    CheckBox cb_font_14;
+    CheckBox cb_font_16;
+    CheckBox cb_font_18;
+
     SharedPreferences preferences;
     boolean shouldExecuteOnResume;
 
@@ -27,7 +32,6 @@ public class SettingDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_details);
-
         shouldExecuteOnResume = false;
         Toolbar myToolbar =  findViewById(R.id.my_toolbar_setting);
         setSupportActionBar(myToolbar);
@@ -43,13 +47,19 @@ public class SettingDetails extends AppCompatActivity {
         cb_cbc = findViewById(R.id.cb_cbc);
         cb_abc = findViewById(R.id.cb_abc);
 
+        cb_font_14 = findViewById(R.id.cb_font_14);
+        cb_font_16 = findViewById(R.id.cb_font_16);
+        cb_font_18 = findViewById(R.id.cb_font_18);
+
         cb_fin.setOnClickListener(new clickedCB(MainActivity.pref_fin, MainActivity.cb_fin_state, R.id.cb_fin ));
         cb_cbc.setOnClickListener(new clickedCB(MainActivity.pref_cbc, MainActivity.cb_cbc_key, R.id.cb_cbc ));
         cb_cbc.setOnClickListener(new clickedCB(MainActivity.pref_abc, MainActivity.cb_cbc_key, R.id.cb_abc ));
 
+        cb_font_14.setOnClickListener(new clickedCB(MainActivity.pref_14, MainActivity.cb_14_key, R.id.cb_font_14));
+        cb_font_16.setOnClickListener(new clickedCB(MainActivity.pref_16, MainActivity.cb_16_key, R.id.cb_font_16));
+        cb_font_18.setOnClickListener(new clickedCB(MainActivity.pref_18, MainActivity.cb_18_key, R.id.cb_font_18));
+
     }
-
-
 
     public class clickedCB implements View.OnClickListener{
 
@@ -72,13 +82,11 @@ public class SettingDetails extends AppCompatActivity {
                 editor.clear();
                 editor.putBoolean(key, clickedCB.isChecked());
                 editor.apply();
-//                Toast.makeText(SettingDetails.this, Boolean.toString(clickedCB.isChecked()), Toast.LENGTH_SHORT).show();
             } else{
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.clear();
                 editor.putBoolean(key, clickedCB.isChecked());
                 editor.apply();
-//                Toast.makeText(SettingDetails.this, Boolean.toString(clickedCB.isChecked()), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -87,19 +95,13 @@ public class SettingDetails extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         Log.d("setting", "onpause");
-//        cb_fin = findViewById(R.id.cb_fin);
-//        boolean cb_fin_state = cb_fin.isChecked();
-//        if(cb_fin_state){
-//            preferences.edit().putBoolean("checkboxstate_fin",true).apply();
-////            Toast.makeText(SettingDetails.this, "pause"+Boolean.toString(cb_fin_state), Toast.LENGTH_SHORT).show();
-//        } else{
-//            preferences.edit().putBoolean("checkboxstate_fin",false).apply();
-////            Toast.makeText(SettingDetails.this, Boolean.toString(cb_fin_state), Toast.LENGTH_SHORT).show();
-//        }
 
         savingState(getSharedPreferences(MainActivity.pref_fin, MODE_PRIVATE), MainActivity.cb_fin_state, R.id.cb_fin);
         savingState(getSharedPreferences(MainActivity.pref_cbc, MODE_PRIVATE), MainActivity.cb_cbc_key, R.id.cb_cbc);
         savingState(getSharedPreferences(MainActivity.pref_abc, MODE_PRIVATE), MainActivity.cb_abc_key, R.id.cb_abc);
+        savingState(getSharedPreferences(MainActivity.pref_14, MODE_PRIVATE), MainActivity.cb_14_key, R.id.cb_font_14);
+        savingState(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key, R.id.cb_font_16);
+        savingState(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key, R.id.cb_font_18);
 
     }
 
@@ -108,10 +110,8 @@ public class SettingDetails extends AppCompatActivity {
         boolean cb_checked_state = cb_num.isChecked();
         if(cb_num.isChecked()){
             preferences.edit().putBoolean(key,true).apply();
-            Toast.makeText(SettingDetails.this, "setting - pause "+cb_num.isChecked(), Toast.LENGTH_SHORT).show();
         } else{
             preferences.edit().putBoolean(key,false).apply();
-            Toast.makeText(SettingDetails.this, "setting - pause "+cb_num.isChecked(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -121,8 +121,9 @@ public class SettingDetails extends AppCompatActivity {
         adaptingPref(getSharedPreferences(MainActivity.pref_fin, MODE_PRIVATE), MainActivity.cb_fin_state, R.id.cb_fin);
         adaptingPref(getSharedPreferences(MainActivity.pref_cbc, MODE_PRIVATE), MainActivity.cb_cbc_key, R.id.cb_cbc);
         adaptingPref(getSharedPreferences(MainActivity.pref_abc, MODE_PRIVATE), MainActivity.cb_abc_key, R.id.cb_abc);
-        Toast.makeText(SettingDetails.this, "resume ", Toast.LENGTH_SHORT).show();
-
+        adaptingPref(getSharedPreferences(MainActivity.pref_14, MODE_PRIVATE), MainActivity.cb_14_key, R.id.cb_font_14);
+        adaptingPref(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key, R.id.cb_font_16);
+        adaptingPref(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key, R.id.cb_font_18);
 
     }
 

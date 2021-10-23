@@ -133,7 +133,7 @@
                 android:layout_marginStart="64dp"
 
                 android:layout_marginTop="78dp"
-                android:text="ABCDEF - size 14" />
+                android:text="ABCDEF - small" />
 
             <CheckBox
                 android:id="@+id/cb_font_14"
@@ -155,7 +155,7 @@
 
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="41dp"
-                android:text="ABCDEF - size 16"
+                android:text="ABCDEF - medium"
                 android:textSize="16sp" />
 
             <CheckBox
@@ -178,7 +178,7 @@
 
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="45dp"
-                android:text="ABCDEF - size 18"
+                android:text="ABCDEF - Large"
                 android:textSize="18sp" />
 
             <CheckBox

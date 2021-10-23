@@ -1,5 +1,7 @@
 package com.example.assignment7_hc;
 
+import static com.example.assignment7_hc.R.style.Theme_AppCompat_DayNight_DarkActionBar;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,17 +19,22 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 import android.content.SharedPreferences;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javax.net.ssl.HttpsURLConnection;
@@ -39,12 +46,22 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
 
     SharedPreferences preferences;
     boolean shouldExecuteOnResume;
+    static ArrayList<TextView> title;
+    static ArrayList<TextView> desp;
     public static final String pref_fin = "pref_fin";
     public static final String pref_cbc = "pref_cbc";
     public static final String pref_abc = "pref_abc";
+    public static final String pref_14 = "pref_14";
+    public static final String pref_16 = "pref_16";
+    public static final String pref_18 = "pref_18";
     public static final String cb_fin_state = "checkboxstat_fin";
     public static final String cb_cbc_key = "checkboxstat_cbc";
     public static final String cb_abc_key = "checkboxstat_abc";
+    public static final String cb_14_key = "cbstate_14";
+    public static final String cb_16_key = "cbstate_16";
+    public static final String cb_18_key = "cbstate_18";
+
+    ArrayList<Channel> channels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,16 +103,60 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        adaptingPref(getSharedPreferences(MainActivity.pref_fin, MODE_PRIVATE), MainActivity.cb_fin_state, R.id.rl_one);
-        adaptingPref(getSharedPreferences(MainActivity.pref_cbc, MODE_PRIVATE), MainActivity.cb_cbc_key, R.id.rl_two);
-        adaptingPref(getSharedPreferences(MainActivity.pref_abc, MODE_PRIVATE), MainActivity.cb_abc_key, R.id.rl_third);
+        displayChannel(getSharedPreferences(MainActivity.pref_fin, MODE_PRIVATE), MainActivity.cb_fin_state, R.id.rl_one);
+        displayChannel(getSharedPreferences(MainActivity.pref_cbc, MODE_PRIVATE), MainActivity.cb_cbc_key, R.id.rl_two);
+        displayChannel(getSharedPreferences(MainActivity.pref_abc, MODE_PRIVATE), MainActivity.cb_abc_key, R.id.rl_third);
+
+        adjustFontSize(getSharedPreferences(MainActivity.pref_14, MODE_PRIVATE), MainActivity.cb_14_key, 14);
+        adjustFontSize(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key,16);
+        adjustFontSize(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key,18);
+
+    }
+
+    public void adjustFontSize(SharedPreferences preferences, String key, int size){
+        ListView lv_rss = findViewById(R.id.lv_RSS_Feed);
+        boolean checkState = preferences.getBoolean(key, true);
+        TextView titleOne = findViewById(R.id.tv_title_main_one);
+        TextView titleTwo = findViewById(R.id.tv_title_main_two);
+        TextView titleThird = findViewById(R.id.tv_title_main_third);
+
+
+        title = new ArrayList<TextView>();
+        title.add(titleOne);
+        title.add(titleTwo);
+        title.add(titleThird);
+
+        TextView despOne = findViewById(R.id.tv_descp_main_one);
+        TextView despTwo = findViewById(R.id.tv_descp_main_two);
+        TextView despThird = findViewById(R.id.tv_descp_main_third);
+
+        desp = new ArrayList<TextView>();
+        desp.add(despOne);
+        desp.add(despTwo);
+        desp.add(despThird);
+
+        channels = RSSParseHandler.list;
+
+
+        if(checkState){
+            for(int i = 0; i < title.size(); i++){
+                title.get(i).setTextSize(size);
+                desp.get(i).setTextSize(size-3);
+            }
+
+        } else{
+            for(int i = 0; i < title.size(); i++){
+                title.get(i).setTextSize(16);
+                desp.get(i).setTextSize(13);
+            }
+        }
     }
 
 
-    public void adaptingPref(SharedPreferences preferences, String key, int lv_id){
+
+    public void displayChannel(SharedPreferences preferences, String key, int lv_id){
         boolean checkState = preferences.getBoolean(key, true);
         View lv_num = findViewById(lv_id);
-        Toast.makeText(MainActivity.this, "main "+ checkState, Toast.LENGTH_SHORT).show();
         if(checkState){
             lv_num.setVisibility(View.VISIBLE);
         } else{
