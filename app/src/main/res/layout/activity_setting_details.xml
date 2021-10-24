@@ -284,11 +284,12 @@
 
                 android:layout_marginStart="64dp"
                 android:layout_marginTop="45dp"
-                android:text="Light"
-                android:textSize="14sp" />
+                android:text="SERIF"
+                android:textSize="14sp"
+                app:fontFamily="serif" />
 
             <CheckBox
-                android:id="@+id/cb_font_style_first"
+                android:id="@+id/cb_font_bold"
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -307,11 +308,12 @@
 
                 android:layout_marginStart="63dp"
                 android:layout_marginTop="90dp"
-                android:text="Dark"
-                android:textSize="14sp" />
+                android:text="MONOSPACE"
+                android:textSize="14sp"
+                app:fontFamily="monospace" />
 
             <CheckBox
-                android:id="@+id/cb_font_stule_second"
+                android:id="@+id/cb_font_monospace"
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"

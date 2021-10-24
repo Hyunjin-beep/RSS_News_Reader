@@ -44,13 +44,13 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-                android:style="FONT_WEIGHT_EXTRA_LIGHT"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="29dp"
                 android:layout_marginEnd="127dp"
                 android:layout_toEndOf="@+id/iv_img_main_one"
                 android:text="Fin24 Tech"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:fontFamily="sans-serif-condensed-medium" />
 
             <TextView
                 android:id="@+id/tv_descp_main_one"
@@ -64,7 +64,8 @@
                 android:layout_marginEnd="11dp"
                 android:layout_toEndOf="@+id/iv_img_main_one"
                 android:text="South Africa's premier site for breaking business and finance news, stock market data, economic analysis, personal finance and investment information."
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:fontFamily="serif" />
 
             <ImageView
                 android:id="@+id/iv_img_main_one"
@@ -101,7 +102,8 @@
                 android:layout_marginEnd="9dp"
                 android:layout_toEndOf="@+id/iv_img_main_two"
                 android:text="The latest news from across Canada and around the world."
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:fontFamily="sans-serif-condensed-medium" />
 
             <TextView
                 android:id="@+id/tv_title_main_two"
@@ -115,7 +117,8 @@
                 android:layout_marginEnd="161dp"
                 android:layout_toEndOf="@+id/iv_img_main_two"
                 android:text="CBC News"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:fontFamily="sans-serif-condensed-medium" />
 
             <ImageView
                 android:id="@+id/iv_img_main_two"
@@ -137,22 +140,23 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="-4dp"
-            android:layout_marginTop="384dp"
+            android:layout_marginTop="411dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_title_main_third"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="175dp"
+                android:layout_height="34dp"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
 
                 android:layout_marginStart="26dp"
-                android:layout_marginTop="29dp"
-                android:layout_marginEnd="134dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="86dp"
                 android:layout_toEndOf="@+id/iv_img_main_third"
                 android:text="Top 10 ABC News"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                app:fontFamily="sans-serif-condensed-medium" />
 
             <TextView
                 android:id="@+id/tv_descp_main_third"
@@ -166,7 +170,8 @@
                 android:layout_marginEnd="9dp"
                 android:layout_toEndOf="@+id/iv_img_main_third"
                 android:text="Your trusted source for breaking news, analysis, exclusive interviews, headlines, and videos at ABCNews.com"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                app:fontFamily="sans-serif-condensed-medium" />
 
             <ImageView
                 android:id="@+id/iv_img_main_third"
@@ -176,7 +181,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="30dp"
 
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="56dp"
                 android:contentDescription="TODO"
                 app:srcCompat="@drawable/abcnews_pearl_stacked" />
         </RelativeLayout>

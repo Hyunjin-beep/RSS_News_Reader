@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
@@ -62,6 +63,9 @@ public class DetailsPage extends AppCompatActivity {
         adjustFontSize(getSharedPreferences(MainActivity.pref_14, MODE_PRIVATE), MainActivity.cb_14_key, 16);
         adjustFontSize(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key,20);
         adjustFontSize(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key,23);
+
+        changeFontStyle(getSharedPreferences(MainActivity.pref_mono, MODE_PRIVATE), MainActivity.cb_theme_mono_key, Typeface.MONOSPACE);
+        changeFontStyle(getSharedPreferences(MainActivity.pref_bold, MODE_PRIVATE), MainActivity.cb_theme_bold_key, Typeface.SERIF);
     }
 
     public void adjustFontSize(SharedPreferences preferences, String key, int size){
@@ -70,8 +74,6 @@ public class DetailsPage extends AppCompatActivity {
         TextView tvDesp = findViewById(R.id.tvDespDP);
         TextView tvPubDate = findViewById(R.id.tvPubDateDP);
 
-
-
         if(checkState){
             tvTitle.setTextSize(size);
             tvDesp.setTextSize(size-3);
@@ -79,6 +81,19 @@ public class DetailsPage extends AppCompatActivity {
             Toast.makeText(DetailsPage.this, "qe", Toast.LENGTH_SHORT).show();
 
         }
+    }
 
+    public void changeFontStyle(SharedPreferences preferences, String key, Typeface fontStyle){
+        boolean checkState = preferences.getBoolean(key, true);
+        TextView tvTitle = findViewById(R.id.tvTitleDP);
+        TextView tvDesp = findViewById(R.id.tvDespDP);
+        TextView tvPubDate = findViewById(R.id.tvPubDateDP);
+
+
+        if(checkState){
+            tvTitle.setTypeface(fontStyle);
+            tvDesp.setTypeface(fontStyle);
+            tvPubDate.setTypeface(fontStyle);
+        }
     }
 }

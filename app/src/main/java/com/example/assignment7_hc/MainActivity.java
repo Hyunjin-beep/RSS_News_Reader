@@ -15,6 +15,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -37,6 +38,7 @@ import android.content.SharedPreferences;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -60,6 +62,8 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
     public static final String pref_18 = "pref_18";
     public static final String pref_light = "pref_light";
     public static final String pref_dark = "pref_dark";
+    public static final String pref_mono = "pref_mono";
+    public static final String pref_bold = "pref_bold";
 
     public static final String cb_fin_state = "checkboxstat_fin";
     public static final String cb_cbc_key = "checkboxstat_cbc";
@@ -69,6 +73,8 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
     public static final String cb_18_key = "cbstate_18";
     public static final String cb_theme_light_key = "cbstate_light";
     public static final String cb_theme_dark_key = "cbstate_dark";
+    public static final String cb_theme_mono_key = "cbstate_mono";
+    public static final String cb_theme_bold_key = "cbstate_bold";
 
     ArrayList<Channel> channels;
 
@@ -125,6 +131,40 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
         adjustFontSize(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key,20);
         adjustFontSize(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key,23);
 
+        changeFontStyle(getSharedPreferences(MainActivity.pref_mono, MODE_PRIVATE), MainActivity.cb_theme_mono_key, Typeface.MONOSPACE);
+        changeFontStyle(getSharedPreferences(MainActivity.pref_bold, MODE_PRIVATE), MainActivity.cb_theme_bold_key, Typeface.SERIF);
+
+    }
+
+    public void changeFontStyle(SharedPreferences preferences, String key, Typeface fontStyle){
+        boolean checkState = preferences.getBoolean(key, true);
+        TextView titleOne = findViewById(R.id.tv_title_main_one);
+        TextView titleTwo = findViewById(R.id.tv_title_main_two);
+        TextView titleThird = findViewById(R.id.tv_title_main_third);
+
+        title = new ArrayList<TextView>();
+        title.add(titleOne);
+        title.add(titleTwo);
+        title.add(titleThird);
+
+        TextView despOne = findViewById(R.id.tv_descp_main_one);
+        TextView despTwo = findViewById(R.id.tv_descp_main_two);
+        TextView despThird = findViewById(R.id.tv_descp_main_third);
+
+        desp = new ArrayList<TextView>();
+        desp.add(despOne);
+        desp.add(despTwo);
+        desp.add(despThird);
+
+        channels = RSSParseHandler.list;
+
+
+        if(checkState){
+            for(int i = 0; i < title.size(); i++){
+                title.get(i).setTypeface(fontStyle);
+                desp.get(i).setTypeface(fontStyle);
+            }
+        }
     }
 
     public boolean changeTheme(SharedPreferences preferences, String key, int themeName){
@@ -162,15 +202,7 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
                 title.get(i).setTextSize(size);
                 desp.get(i).setTextSize(size-3);
             }
-
         }
-
-//        else{
-//            for(int i = 0; i < title.size(); i++){
-//                title.get(i).setTextSize(16);
-//                desp.get(i).setTextSize(13);
-//            }
-//        }
     }
 
 

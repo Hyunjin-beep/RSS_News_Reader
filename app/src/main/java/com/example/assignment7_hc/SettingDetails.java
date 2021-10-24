@@ -31,6 +31,9 @@ public class SettingDetails extends AppCompatActivity {
     CheckBox cb_theme_light;
     CheckBox cb_theme_dark;
 
+    CheckBox cb_font_bold;
+    CheckBox cb_font_monospace;
+
     SharedPreferences preferences;
     boolean shouldExecuteOnResume;
 
@@ -62,6 +65,9 @@ public class SettingDetails extends AppCompatActivity {
         cb_theme_light = findViewById(R.id.cb_theme_light);
         cb_theme_dark = findViewById(R.id.cb_theme_dark);
 
+        cb_font_monospace = findViewById(R.id.cb_font_monospace);
+        cb_font_bold = findViewById(R.id.cb_font_bold);
+
         cb_fin.setOnClickListener(new clickedCB(MainActivity.pref_fin, MainActivity.cb_fin_state, R.id.cb_fin ));
         cb_cbc.setOnClickListener(new clickedCB(MainActivity.pref_cbc, MainActivity.cb_cbc_key, R.id.cb_cbc ));
         cb_cbc.setOnClickListener(new clickedCB(MainActivity.pref_abc, MainActivity.cb_cbc_key, R.id.cb_abc ));
@@ -72,6 +78,9 @@ public class SettingDetails extends AppCompatActivity {
 
         cb_theme_light.setOnClickListener(new clickedCB(MainActivity.pref_light, MainActivity.cb_theme_light_key, R.id.cb_theme_light));
         cb_theme_dark.setOnClickListener(new clickedCB(MainActivity.pref_dark, MainActivity.cb_theme_dark_key, R.id.cb_theme_dark));
+
+        cb_font_monospace.setOnClickListener(new clickedCB(MainActivity.pref_mono, MainActivity.cb_theme_mono_key, R.id.cb_font_monospace));
+        cb_font_bold.setOnClickListener(new clickedCB(MainActivity.pref_bold, MainActivity.cb_theme_bold_key, R.id.cb_font_bold));
 
     }
 
@@ -123,6 +132,8 @@ public class SettingDetails extends AppCompatActivity {
         savingState(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key, R.id.cb_font_18);
         savingStateRelatedToTheme(getSharedPreferences(MainActivity.pref_light, MODE_PRIVATE), MainActivity.cb_theme_light_key, R.id.cb_theme_light);
         savingStateRelatedToTheme(getSharedPreferences(MainActivity.pref_dark, MODE_PRIVATE), MainActivity.cb_theme_dark_key, R.id.cb_theme_dark);
+        savingStateRelatedToTheme(getSharedPreferences(MainActivity.pref_mono, MODE_PRIVATE), MainActivity.cb_theme_mono_key, R.id.cb_font_monospace);
+        savingStateRelatedToTheme(getSharedPreferences(MainActivity.pref_bold, MODE_PRIVATE), MainActivity.cb_theme_bold_key, R.id.cb_font_bold);
 
     }
 
@@ -161,6 +172,8 @@ public class SettingDetails extends AppCompatActivity {
         adaptingPref(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key, R.id.cb_font_18);
         adaptingPref(getSharedPreferences(MainActivity.pref_light, MODE_PRIVATE), MainActivity.cb_theme_light_key, R.id.cb_theme_light);
         adaptingPref(getSharedPreferences(MainActivity.pref_dark, MODE_PRIVATE), MainActivity.cb_theme_dark_key, R.id.cb_theme_dark);
+        adaptingPref(getSharedPreferences(MainActivity.pref_mono, MODE_PRIVATE), MainActivity.cb_theme_mono_key, R.id.cb_font_monospace);
+        adaptingPref(getSharedPreferences(MainActivity.pref_bold, MODE_PRIVATE), MainActivity.cb_theme_bold_key, R.id.cb_font_bold);
 
     }
 

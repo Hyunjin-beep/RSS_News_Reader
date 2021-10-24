@@ -11,6 +11,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -79,6 +80,9 @@ public class Selected_Feed extends AppCompatActivity {
         adjustFontSize(getSharedPreferences(MainActivity.pref_14, MODE_PRIVATE), MainActivity.cb_14_key, 16);
         adjustFontSize(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key,20);
         adjustFontSize(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key, 23);
+
+        changeFontStyle(getSharedPreferences(MainActivity.pref_mono, MODE_PRIVATE), MainActivity.cb_theme_mono_key, Typeface.MONOSPACE);
+        changeFontStyle(getSharedPreferences(MainActivity.pref_bold, MODE_PRIVATE), MainActivity.cb_theme_bold_key, Typeface.SERIF);
     }
 
     public void adjustFontSize(SharedPreferences preferences, String key, int size){
@@ -86,6 +90,14 @@ public class Selected_Feed extends AppCompatActivity {
         if(checkState){
             FontStyleAdapter fontStyleAdapter = new FontStyleAdapter(this, R.layout.channel_layout, RSSParseHandler.list, size);
             lvRSS.setAdapter(fontStyleAdapter);
+        }
+    }
+
+    public void changeFontStyle(SharedPreferences preferences, String key, Typeface fontStyle){
+        boolean checkState = preferences.getBoolean(key, true);
+        if(checkState){
+            FontAdapter fontAdapter = new FontAdapter(this, R.layout.channel_layout, RSSParseHandler.list, fontStyle);
+            lvRSS.setAdapter(fontAdapter);
         }
     }
 
