@@ -19,6 +19,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ public class Selected_Feed extends AppCompatActivity {
 
     ListView lvRSS;
     SwipeRefreshLayout swipeRefreshLayout;
+    ArrayAdapter<Channel> channelArrayAdapter;
 
 
     @Override
@@ -59,14 +61,28 @@ public class Selected_Feed extends AppCompatActivity {
         lvRSS.setOnItemClickListener(feedClicked);
 
         swipeRefreshLayout = findViewById(R.id.swipe_layout);
+        channelArrayAdapter = new ArrayAdapter<>(this, R.layout.channel_layout, RSSParseHandler.list);
+        lvRSS.setAdapter(channelArrayAdapter);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 Log.d("second", "refresh" );
+                //new MainActivity.DownloadAndParseRSS("https://feeds.24.com/articles/fin24/tech/rss", "fin").execute();
+                reload();
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+    }
 
+    public void reload() {
+        Toast.makeText(Selected_Feed.this, "refresh", Toast.LENGTH_SHORT).show();
+        Intent intent = getIntent();
+        overridePendingTransition(15, 15);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+
+        overridePendingTransition(15, 15);
+        startActivity(intent);
     }
 
     public boolean changeTheme(SharedPreferences preferences, String key, int themeName){
@@ -105,7 +121,7 @@ public class Selected_Feed extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item){
         if(item.getItemId() == R.id.menu_refresh){
-            Toast.makeText(Selected_Feed.this, "refresh", Toast.LENGTH_SHORT).show();
+            reload();
         }
 
         return super.onOptionsItemSelected(item);

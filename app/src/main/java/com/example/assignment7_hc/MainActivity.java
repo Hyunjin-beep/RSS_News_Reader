@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -52,6 +53,8 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
 
     SharedPreferences preferences;
     boolean shouldExecuteOnResume;
+
+    ListView lvRSS;
     static ArrayList<TextView> title;
     static ArrayList<TextView> desp;
     public static final String pref_fin = "pref_fin";
@@ -92,6 +95,7 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
         Toolbar myToolbar =  findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
+        lvRSS = findViewById(R.id.lv_RSS_Feed);
 
         View lv_one = findViewById(R.id.rl_one);
         lv_one.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +120,9 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
                 new DownloadAndParseRSS(" https://abcnews.go.com/abcnews/topstories", "abc").execute();
             }
         });
+
+
+
 
     }
 
