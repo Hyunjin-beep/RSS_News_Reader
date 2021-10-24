@@ -1,5 +1,8 @@
 package com.example.assignment7_hc;
 
+import static com.example.assignment7_hc.R.style.AppTheme;
+import static com.example.assignment7_hc.R.style.AppTheme2;
+import static com.example.assignment7_hc.R.style.AppTheme3;
 import static com.example.assignment7_hc.R.style.Theme_AppCompat_DayNight_DarkActionBar;
 
 import androidx.annotation.NonNull;
@@ -11,6 +14,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -54,17 +58,26 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
     public static final String pref_14 = "pref_14";
     public static final String pref_16 = "pref_16";
     public static final String pref_18 = "pref_18";
+    public static final String pref_light = "pref_light";
+    public static final String pref_dark = "pref_dark";
+
     public static final String cb_fin_state = "checkboxstat_fin";
     public static final String cb_cbc_key = "checkboxstat_cbc";
     public static final String cb_abc_key = "checkboxstat_abc";
     public static final String cb_14_key = "cbstate_14";
     public static final String cb_16_key = "cbstate_16";
     public static final String cb_18_key = "cbstate_18";
+    public static final String cb_theme_light_key = "cbstate_light";
+    public static final String cb_theme_dark_key = "cbstate_dark";
 
     ArrayList<Channel> channels;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // add method for changing thing
+        boolean light_btn = changeTheme(getSharedPreferences(MainActivity.pref_light, MODE_PRIVATE), MainActivity.cb_theme_light_key, AppTheme);
+        setTheme(light_btn? AppTheme2 : AppTheme);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -72,6 +85,7 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
 
         Toolbar myToolbar =  findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
+
 
         View lv_one = findViewById(R.id.rl_one);
         lv_one.setOnClickListener(new View.OnClickListener() {
@@ -107,10 +121,15 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
         displayChannel(getSharedPreferences(MainActivity.pref_cbc, MODE_PRIVATE), MainActivity.cb_cbc_key, R.id.rl_two);
         displayChannel(getSharedPreferences(MainActivity.pref_abc, MODE_PRIVATE), MainActivity.cb_abc_key, R.id.rl_third);
 
-        adjustFontSize(getSharedPreferences(MainActivity.pref_14, MODE_PRIVATE), MainActivity.cb_14_key, 14);
-        adjustFontSize(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key,16);
-        adjustFontSize(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key,18);
+        adjustFontSize(getSharedPreferences(MainActivity.pref_14, MODE_PRIVATE), MainActivity.cb_14_key, 16);
+        adjustFontSize(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key,20);
+        adjustFontSize(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key,23);
 
+    }
+
+    public boolean changeTheme(SharedPreferences preferences, String key, int themeName){
+        boolean checkState = preferences.getBoolean(key, true);
+        return checkState;
     }
 
     public void adjustFontSize(SharedPreferences preferences, String key, int size){
@@ -144,12 +163,14 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
                 desp.get(i).setTextSize(size-3);
             }
 
-        } else{
-            for(int i = 0; i < title.size(); i++){
-                title.get(i).setTextSize(16);
-                desp.get(i).setTextSize(13);
-            }
         }
+
+//        else{
+//            for(int i = 0; i < title.size(); i++){
+//                title.get(i).setTextSize(16);
+//                desp.get(i).setTextSize(13);
+//            }
+//        }
     }
 
 
@@ -164,8 +185,6 @@ public class MainActivity<setOnClickListener> extends AppCompatActivity {
         }
 
     }
-
-
 
     @Override
     protected void onPause() {

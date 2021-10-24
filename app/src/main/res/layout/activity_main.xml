@@ -2,10 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
+    android:fitsSystemWindows="true"
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.Toolbar
@@ -13,10 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+        android:elevation="4dp">
 
 
     </androidx.appcompat.widget.Toolbar>
@@ -47,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentEnd="true"
-
+                android:style="FONT_WEIGHT_EXTRA_LIGHT"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="29dp"
                 android:layout_marginEnd="127dp"
@@ -57,14 +54,14 @@
 
             <TextView
                 android:id="@+id/tv_descp_main_one"
-                android:layout_width="236dp"
-                android:layout_height="124dp"
+                android:layout_width="247dp"
+                android:layout_height="144dp"
                 android:layout_below="@+id/tv_title_main_one"
 
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="22dp"
+                android:layout_marginEnd="11dp"
                 android:layout_toEndOf="@+id/iv_img_main_one"
                 android:text="South Africa's premier site for breaking business and finance news, stock market data, economic analysis, personal finance and investment information."
                 android:textSize="14sp" />
@@ -94,14 +91,14 @@
 
             <TextView
                 android:id="@+id/tv_descp_main_two"
-                android:layout_width="216dp"
-                android:layout_height="wrap_content"
+                android:layout_width="250dp"
+                android:layout_height="70dp"
                 android:layout_below="@+id/tv_title_main_two"
 
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="43dp"
+                android:layout_marginEnd="9dp"
                 android:layout_toEndOf="@+id/iv_img_main_two"
                 android:text="The latest news from across Canada and around the world."
                 android:textSize="14sp" />
@@ -136,7 +133,7 @@
         <RelativeLayout
             android:id="@+id/rl_third"
             android:layout_width="wrap_content"
-            android:layout_height="176dp"
+            android:layout_height="216dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="-4dp"
@@ -159,14 +156,14 @@
 
             <TextView
                 android:id="@+id/tv_descp_main_third"
-                android:layout_width="243dp"
-                android:layout_height="115dp"
+                android:layout_width="252dp"
+                android:layout_height="133dp"
                 android:layout_below="@+id/tv_title_main_third"
 
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="26dp"
                 android:layout_marginTop="7dp"
-                android:layout_marginEnd="19dp"
+                android:layout_marginEnd="9dp"
                 android:layout_toEndOf="@+id/iv_img_main_third"
                 android:text="Your trusted source for breaking news, analysis, exclusive interviews, headlines, and videos at ABCNews.com"
                 android:textSize="14sp" />

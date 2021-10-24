@@ -1,5 +1,8 @@
 package com.example.assignment7_hc;
 
+import static com.example.assignment7_hc.R.style.AppTheme;
+import static com.example.assignment7_hc.R.style.AppTheme2;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -25,16 +28,22 @@ public class SettingDetails extends AppCompatActivity {
     CheckBox cb_font_16;
     CheckBox cb_font_18;
 
+    CheckBox cb_theme_light;
+    CheckBox cb_theme_dark;
+
     SharedPreferences preferences;
     boolean shouldExecuteOnResume;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        boolean light_btn = changeTheme(getSharedPreferences(MainActivity.pref_light, MODE_PRIVATE), MainActivity.cb_theme_light_key, AppTheme);
+        setTheme(light_btn? AppTheme2 : AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_details);
         shouldExecuteOnResume = false;
         Toolbar myToolbar =  findViewById(R.id.my_toolbar_setting);
         setSupportActionBar(myToolbar);
+
 
         if(getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -50,6 +59,8 @@ public class SettingDetails extends AppCompatActivity {
         cb_font_14 = findViewById(R.id.cb_font_14);
         cb_font_16 = findViewById(R.id.cb_font_16);
         cb_font_18 = findViewById(R.id.cb_font_18);
+        cb_theme_light = findViewById(R.id.cb_theme_light);
+        cb_theme_dark = findViewById(R.id.cb_theme_dark);
 
         cb_fin.setOnClickListener(new clickedCB(MainActivity.pref_fin, MainActivity.cb_fin_state, R.id.cb_fin ));
         cb_cbc.setOnClickListener(new clickedCB(MainActivity.pref_cbc, MainActivity.cb_cbc_key, R.id.cb_cbc ));
@@ -58,6 +69,9 @@ public class SettingDetails extends AppCompatActivity {
         cb_font_14.setOnClickListener(new clickedCB(MainActivity.pref_14, MainActivity.cb_14_key, R.id.cb_font_14));
         cb_font_16.setOnClickListener(new clickedCB(MainActivity.pref_16, MainActivity.cb_16_key, R.id.cb_font_16));
         cb_font_18.setOnClickListener(new clickedCB(MainActivity.pref_18, MainActivity.cb_18_key, R.id.cb_font_18));
+
+        cb_theme_light.setOnClickListener(new clickedCB(MainActivity.pref_light, MainActivity.cb_theme_light_key, R.id.cb_theme_light));
+        cb_theme_dark.setOnClickListener(new clickedCB(MainActivity.pref_dark, MainActivity.cb_theme_dark_key, R.id.cb_theme_dark));
 
     }
 
@@ -91,6 +105,11 @@ public class SettingDetails extends AppCompatActivity {
         }
     }
 
+    public boolean changeTheme(SharedPreferences preferences, String key, int themeName){
+        boolean checkStateSetting = preferences.getBoolean(key, true);
+        return checkStateSetting;
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
@@ -102,6 +121,8 @@ public class SettingDetails extends AppCompatActivity {
         savingState(getSharedPreferences(MainActivity.pref_14, MODE_PRIVATE), MainActivity.cb_14_key, R.id.cb_font_14);
         savingState(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key, R.id.cb_font_16);
         savingState(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key, R.id.cb_font_18);
+        savingStateRelatedToTheme(getSharedPreferences(MainActivity.pref_light, MODE_PRIVATE), MainActivity.cb_theme_light_key, R.id.cb_theme_light);
+        savingStateRelatedToTheme(getSharedPreferences(MainActivity.pref_dark, MODE_PRIVATE), MainActivity.cb_theme_dark_key, R.id.cb_theme_dark);
 
     }
 
@@ -115,6 +136,20 @@ public class SettingDetails extends AppCompatActivity {
         }
     }
 
+    public void savingStateRelatedToTheme(SharedPreferences preferences, String key, int cb_id){
+        CheckBox cb_num = findViewById(cb_id);
+        if(cb_num.isChecked()){
+            preferences.edit().putBoolean(key,true).apply();
+        } else{
+            preferences.edit().putBoolean(key,false).apply();
+        }
+
+        Intent intent = new Intent(SettingDetails.this, MainActivity.class);
+        startActivity(intent);
+        finish();
+
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -124,6 +159,8 @@ public class SettingDetails extends AppCompatActivity {
         adaptingPref(getSharedPreferences(MainActivity.pref_14, MODE_PRIVATE), MainActivity.cb_14_key, R.id.cb_font_14);
         adaptingPref(getSharedPreferences(MainActivity.pref_16, MODE_PRIVATE), MainActivity.cb_16_key, R.id.cb_font_16);
         adaptingPref(getSharedPreferences(MainActivity.pref_18, MODE_PRIVATE), MainActivity.cb_18_key, R.id.cb_font_18);
+        adaptingPref(getSharedPreferences(MainActivity.pref_light, MODE_PRIVATE), MainActivity.cb_theme_light_key, R.id.cb_theme_light);
+        adaptingPref(getSharedPreferences(MainActivity.pref_dark, MODE_PRIVATE), MainActivity.cb_theme_dark_key, R.id.cb_theme_dark);
 
     }
 
